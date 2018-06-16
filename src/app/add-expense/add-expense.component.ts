@@ -21,26 +21,28 @@ export class AddExpenseComponent implements OnInit {
   }
 
   addItem(str: string){
-    let objToPush = {
-      name: this.description,
-      value: this.value
+      let objToPush = {
+        name: this.description,
+        value: this.value
+      }
+      if(this.value != null && this.description != ""){
+      if(str == 'expense'){
+        this.expensesList.push(objToPush);
+        this.data.checkExpenses(this.expensesList);
+      } else if(str == 'income'){
+        this.incomeList.push(objToPush);
+        this.data.checkIncome(this.incomeList);
+      }
+      else{
+        console.log(str);
+        alert("Check the sign value in console");
+      }
+      console.log("Income List");
+      console.log(this.incomeList);
+      this.description = "";
+      this.value = null;
+    }else{
+      return
     }
-    console.log("obj to Push");
-    console.log(objToPush);
-    if(str == 'expense'){
-      this.expensesList.push(objToPush);
-      this.data.checkExpenses(this.expensesList);
-    } else if(str == 'income'){
-      this.incomeList.push(objToPush);
-      this.data.checkIncome(this.incomeList);
-    }
-    else{
-      console.log(str);
-      alert("Check the sign value in console");
-    }
-    console.log("Income List");
-    console.log(this.incomeList);
-    this.description = "";
-    this.value = null;
   }
 }
