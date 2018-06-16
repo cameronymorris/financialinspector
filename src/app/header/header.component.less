@@ -1,0 +1,55 @@
+.header-container{
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('back.png');
+    text-align: center;
+
+    p{
+        color: #fff;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .contentHeading{
+        margin: 0 auto;
+        padding-top: 60px;
+        .name{
+            font-size: 35px;
+        }
+        .value{
+            font-size: 50px;
+        }
+    }
+}
+
+.separateBlocks{
+    padding-top: 15px;
+    margin: auto;
+    width: 80%;
+    max-width: 500px;
+    min-width: 150px;
+    .income{
+        display: flex;
+        flex-flow: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        height: 15px;
+        padding: 15px 0;
+        background-color: #80ba2a;
+        
+        /*use further for vertical centring*/
+        /*line-height: px;*/
+        .name{
+            padding: 0 10px;
+            font-weight: bold;
+        }
+        .value{
+            padding: 0 10px;
+        }
+    }
+    .expenses{
+        .income;
+        background-color: #ba332a;
+        margin-top: 10px;
+    }
+
+}

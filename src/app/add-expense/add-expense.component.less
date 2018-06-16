@@ -1,0 +1,81 @@
+.add-expense-container{
+    width: 100%;
+    text-align: center;
+    background-color: rgb(247, 247, 247);
+    padding: 20px 0;
+    .content{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    
+        input{
+            height: 50px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid rgb(231, 231, 231);
+            text-indent: 10px;
+            &:focus {
+                outline: none;
+                border: 1px solid #c6baba;
+                transition: border 0.3s;
+            }
+        }
+
+        #value{
+            width: 30%;
+        }
+
+        #description{
+            width: 50%;
+        }
+
+        #add-btn{
+            font-size: 50px;
+            cursor: pointer;
+
+            &:hover{
+                color: #80ba2a;
+                transition: color 0.3s;
+            }
+        }
+
+        .income-expense{
+            height: 50px;
+            width: 5%;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid rgb(231, 231, 231);
+            &:focus {
+                outline: none;
+                border: 1px solid #c6baba;
+                transition: border 0.3s;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .content{
+        display: block !important;
+        
+        .income-expense{
+            width: 15% !important;
+            margin-right: 15px;
+        }
+        
+        #value{
+            width: 60% !important;
+        }
+
+        #description{
+            display: block;
+            margin: auto;
+            width: 100% !important;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    }
+}

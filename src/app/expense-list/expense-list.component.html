@@ -1,0 +1,18 @@
+<div class="expense-list-container">
+  <div class="content">
+    <div class="income">
+      <p class="name">INCOME</p>
+      <div class="income-list" *ngFor="let items of incomeList">
+        <p class="income-list-name">{{items.name}}</p>
+        <p class="income-list-value">{{items.value}}</p>
+      </div>
+    </div>
+    <div class="expenses">
+      <p class="name">EXPENSES</p>
+      <div class="expenses-list" *ngFor="let items of expensesList">
+        <p class="expenses-list-name">{{items.name}}</p>
+        <p class="expenses-list-value">{{items.value}}</p>        
+      </div>
+    </div>  
+  </div>
+</div>

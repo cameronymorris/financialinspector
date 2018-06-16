@@ -1,0 +1,11 @@
+<div class="add-expense-container">
+  <div class="content">
+    <select name="income-expense" id="" class="income-expense" [(ngModel)]="currentSign">
+      <option selected value="income">+</option>
+      <option value="expense">-</option>
+    </select>
+    <input type="number" placeholder="Value..." id="value" [(ngModel)]="value" />
+    <input type="text" placeholder="Add description..." id="description" [(ngModel)]="description" />
+  <i class="ion-ios-checkmark-outline" id="add-btn" (click)="addItem(currentSign)"></i>
+</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="header-container">
+  <div class="contentHeading">
+      <p class="name">Current Available Budget</p>
+      <p class="value">{{getIncome() - getExpenses()}}</p>    
+  </div>
+
+  <div class="separateBlocks">
+    <div class="income">
+      <p class="name">
+        INCOME
+      </p>
+      <p class="value">
+        + {{getIncome()}}
+      </p>
+    </div>
+    <div class="expenses">
+        <p class="name">
+            EXPENSES
+          </p>
+          <p class="value">
+            - {{getExpenses()}}
+          </p>
+        </div>
+    </div>
+  </div>

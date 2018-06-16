@@ -1,0 +1,94 @@
+.expense-list-container{
+    width: 100%;
+    text-align: center;
+    
+    .content{
+        padding-top: 30px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 25px;
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .income{
+            color: #80ba2a;
+            width: 40%;
+            min-width: 250px;
+
+            .income-list{
+                display: flex;
+                flex-flow: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                background-color: #fff;
+                padding: 10px 5px;
+                border-top: 1px solid #c6baba;
+                
+                &:first-of-type{
+                    margin-top: 25px;
+                }
+
+                &:nth-child(odd){
+                    background-color: rgb(247, 247, 247);
+                }
+
+                &:last-child{
+                    border-bottom: 1px solid #c6baba;
+                    margin-bottom: 25px;
+                }
+
+                .income-list-name{
+                    color: black;
+                    font-size: 20px;
+                }
+
+                .income-list-value{
+                    color: #80ba2a;
+                    font-size: 20px;
+                }
+
+            }
+        }
+
+        .expenses{
+            color: #ba332a;
+            width: 40%;
+            min-width: 250px;
+
+            .expenses-list{
+                display: flex;
+                flex-flow: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                background-color: #fff;
+                padding: 10px 5px;
+                border-top: 1px solid #c6baba;
+                
+                &:first-of-type{
+                    margin-top: 25px;
+                }
+
+                &:nth-child(odd){
+                    background-color: rgb(247, 247, 247);
+                }
+
+                &:last-child{
+                    border-bottom: 1px solid #c6baba;
+                }
+
+                .expenses-list-name{
+                    color: black;
+                    font-size: 20px;
+                }
+
+                .expenses-list-value{
+                    color: #ba332a;
+                    font-size: 20px;
+                }
+            }
+        }
+
+    }
+}
