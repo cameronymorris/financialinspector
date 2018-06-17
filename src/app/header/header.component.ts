@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { FinancialListRecord } from '../Interfaces/IFinancialList';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,13 @@ import { DataService } from '../data.service';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-  incomeList: { name: string, value: number }[];
-  expensesList: { name: string, value: number }[];
-  constructor(private data: DataService) { }
+  incomeList: FinancialListRecord[];
+  expensesList: FinancialListRecord[];
+  constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.data.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
-    this.data.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
+    this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
+    this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
   }
 
   getIncome(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
 import { ValueTransformer } from '@angular/compiler/src/util';
+import { FinancialListRecord } from '../Interfaces/IFinancialList';
 
 @Component({
   selector: 'app-add-expense',
@@ -11,13 +12,13 @@ export class AddExpenseComponent implements OnInit {
   currentSign: string = "income";
   description: string = "";
   value: number;
-  incomeList: { name: string, value: number }[];
-  expensesList: { name: string, value: number }[];
-  constructor(private data: DataService) { }
+  incomeList: FinancialListRecord[];
+  expensesList: FinancialListRecord[];
+  constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.data.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
-    this.data.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
+    this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
+    this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
   }
 
   addItem(str: string){
@@ -25,24 +26,22 @@ export class AddExpenseComponent implements OnInit {
         name: this.description,
         value: this.value
       }
-      console.log("in another component");
-      console.log(this.incomeList);
       if(this.value != null && this.description != ""){
       if(str == 'expense'){
         this.expensesList.push(objToPush);
         localStorage.setItem('expenseList', JSON.stringify(this.expensesList));
-        this.data.checkExpenses(this.expensesList);
+        this.financialData.updateExpenses(this.expensesList);
       } else if(str == 'income'){
+        console.log(this.incomeList);
+        console.log(this.expensesList);
         this.incomeList.push(objToPush);
         localStorage.setItem('incomeList', JSON.stringify(this.incomeList));
-        this.data.checkIncome(this.incomeList);
+        this.financialData.updateIncome(this.incomeList);
       }
       else{
         console.log(str);
         alert("Check the sign value in console");
       }
-      console.log("Income List");
-      console.log(this.incomeList);
       this.description = "";
       this.value = null;
     }else{
