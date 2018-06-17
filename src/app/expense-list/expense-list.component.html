@@ -3,7 +3,7 @@
     <div class="income">
       <p class="name">INCOME</p>
       <div class="income-list" *ngFor="let items of incomeList; let i = index">
-        <p class="income-list-name">{{items.name}}</p>
+        <div class="income-list-name">{{items.name}}</div>
         <p class="income-list-value">{{items.value}}</p>
         <div class="income-list-delete" (click)="deleteItem(incomeList, i, 'incomeList')">x</div>
       </div>

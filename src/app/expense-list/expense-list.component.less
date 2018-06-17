@@ -14,7 +14,7 @@
         justify-content: space-evenly;
         .income{
             color: #80ba2a;
-            width: 40%;
+            width: 45%;
             min-width: 250px;
 
             .income-list{
@@ -25,6 +25,7 @@
                 background-color: #fff;
                 padding: 10px 5px;
                 border-top: 1px solid #c6baba;
+                height: auto;
                 
                 &:first-of-type{
                     margin-top: 25px;
@@ -40,38 +41,44 @@
                 }
 
                 .income-list-name{
+                    width: 60%;
+                    height: auto;
                     color: black;
                     font-size: 20px;
+                    text-align: justify;
                 }
 
                 .income-list-value{
                     color: #80ba2a;
                     font-size: 20px;
+                    margin: auto;
+                    width: 25%;
                 }
 
                 .income-list-delete{
                     color: red;
                     font-size: 20px;
-                    vertical-align: center;
+                    vertical-align: middle;
                     line-height: 20px;
-                    display: none;
-                    cursor: pointer;                
+                    //display: none;
+                    margin: auto;
+                    cursor: pointer;            
                 }
 
-                &:hover{
-                    transition: all 0.3s;
-                    .income-list-delete{
-                        display: block;
-                        padding-right: 5px;
-                        transition: all 1s;
-                    }
-                }
+                // &:hover{
+                //     transition: all 0.3s;
+                //     .income-list-delete{
+                //         display: block;
+                //         padding-right: 5px;
+                //         transition: all 1s;
+                //     }
+                // }
             }
         }
 
         .expenses{
             color: #ba332a;
-            width: 40%;
+            width: 45%;
             min-width: 250px;
 
             .expenses-list{
@@ -96,33 +103,47 @@
                 }
 
                 .expenses-list-name{
+                    width: 67%;
+                    height: auto;
                     color: black;
                     font-size: 20px;
+                    text-align: justify;
                 }
 
                 .expenses-list-value{
                     color: #ba332a;
                     font-size: 20px;
+                    margin: auto;
                 }
 
                 .expenses-list-delete{
                     color: red;
                     font-size: 20px;
-                    vertical-align: center;
+                    vertical-align: middle;
                     line-height: 20px;
-                    display: none;
+                    //display: none;
+                    margin: auto;
                     cursor: pointer;
                 }
 
-                &:hover{
-                    .expenses-list-delete{
-                        display: block;
-                        padding-right: 5px;
-                        transition: all 1s;
-                    }
-                }
+                // &:hover{
+                //     .expenses-list-delete{
+                //         display: block;
+                //         padding-right: 5px;
+                //         transition: all 1s;
+                //     }
+                // }
             }
         }
 
+    }
+}
+
+@media only screen and (max-width: 641px) {
+    .income{
+        width: 100% !important;
+    }
+    .expenses{
+        width: 100% !important;
     }
 }
