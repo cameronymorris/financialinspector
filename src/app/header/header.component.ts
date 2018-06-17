@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
-    this.data.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
+    this.data.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
+    this.data.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
   }
 
   getIncome(){

@@ -16,8 +16,8 @@ export class AddExpenseComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
-    this.data.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
+    this.data.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
+    this.data.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
   }
 
   addItem(str: string){
@@ -25,12 +25,16 @@ export class AddExpenseComponent implements OnInit {
         name: this.description,
         value: this.value
       }
+      console.log("in another component");
+      console.log(this.incomeList);
       if(this.value != null && this.description != ""){
       if(str == 'expense'){
         this.expensesList.push(objToPush);
+        localStorage.setItem('expenseList', JSON.stringify(this.expensesList));
         this.data.checkExpenses(this.expensesList);
       } else if(str == 'income'){
         this.incomeList.push(objToPush);
+        localStorage.setItem('incomeList', JSON.stringify(this.incomeList));
         this.data.checkIncome(this.incomeList);
       }
       else{

@@ -11,7 +11,7 @@
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         .income{
             color: #80ba2a;
             width: 40%;
@@ -49,6 +49,23 @@
                     font-size: 20px;
                 }
 
+                .income-list-delete{
+                    color: red;
+                    font-size: 20px;
+                    vertical-align: center;
+                    line-height: 20px;
+                    display: none;
+                    cursor: pointer;                
+                }
+
+                &:hover{
+                    transition: all 0.3s;
+                    .income-list-delete{
+                        display: block;
+                        padding-right: 5px;
+                        transition: all 1s;
+                    }
+                }
             }
         }
 
@@ -86,6 +103,23 @@
                 .expenses-list-value{
                     color: #ba332a;
                     font-size: 20px;
+                }
+
+                .expenses-list-delete{
+                    color: red;
+                    font-size: 20px;
+                    vertical-align: center;
+                    line-height: 20px;
+                    display: none;
+                    cursor: pointer;
+                }
+
+                &:hover{
+                    .expenses-list-delete{
+                        display: block;
+                        padding-right: 5px;
+                        transition: all 1s;
+                    }
                 }
             }
         }

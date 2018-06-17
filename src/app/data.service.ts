@@ -13,11 +13,9 @@ export class DataService {
 
   checkIncome(newIncomeList){
     this.incomeList.next(newIncomeList);
-    //localStorage.setItem('incomeList', JSON.stringify(newIncomeList));
   }
 
   checkExpenses(newExpensesList){
     this.expensesList.next(newExpensesList);
-    //localStorage.setItem('expenseList', JSON.stringify(newExpensesList));
   }
 }
