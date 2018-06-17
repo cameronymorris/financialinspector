@@ -1,32 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
 import { FinancialListRecord } from '../Interfaces/IFinancialList';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-expense-list',
   templateUrl: './expense-list.component.html',
-  styleUrls: ['./expense-list.component.less']
+  styleUrls: ['./expense-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
+
 export class ExpenseListComponent implements OnInit {
   incomeList: FinancialListRecord[];
   expensesList: FinancialListRecord[];
+  private incomeSubscription;
+  private expensesSubscription;
 
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
-    this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
+  }
+
+  ngOnDestroy() {
+    this.incomeSubscription.unsubscribe();
+    this.expensesSubscription.unsubscribe();
   }
 
   deleteItem(list, index, name){
     if(name == 'incomeList'){
       this.incomeList.splice(index, 1);
-      localStorage.setItem('incomeList', JSON.stringify(this.incomeList));
-      console.log(this.incomeList);
       this.financialData.updateIncome(this.incomeList);
     } else if (name == 'expensesList'){
       this.expensesList.splice(index, 1);
-      localStorage.setItem('expenseList', JSON.stringify(this.expensesList));
       this.financialData.updateExpenses(this.expensesList);
     } else{
       return;

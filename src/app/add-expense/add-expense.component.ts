@@ -14,32 +14,35 @@ export class AddExpenseComponent implements OnInit {
   value: number;
   incomeList: FinancialListRecord[];
   expensesList: FinancialListRecord[];
+  private incomeSubscription;
+  private expensesSubscription;
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
-    this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
   }
 
-  addItem(str: string){
+  ngOnDestroy() {
+    this.incomeSubscription.unsubscribe();
+    this.expensesSubscription.unsubscribe();
+  }
+
+  addItem(signValue: string){
       let objToPush = {
         name: this.description,
         value: this.value
       }
       if(this.value != null && this.description != ""){
-      if(str == 'expense'){
+      if(signValue == 'expense'){
         this.expensesList.push(objToPush);
-        localStorage.setItem('expenseList', JSON.stringify(this.expensesList));
         this.financialData.updateExpenses(this.expensesList);
-      } else if(str == 'income'){
-        console.log(this.incomeList);
-        console.log(this.expensesList);
+      } else if(signValue == 'income'){
         this.incomeList.push(objToPush);
-        localStorage.setItem('incomeList', JSON.stringify(this.incomeList));
         this.financialData.updateIncome(this.incomeList);
       }
       else{
-        console.log(str);
+        console.log(signValue);
         alert("Check the sign value in console");
       }
       this.description = "";

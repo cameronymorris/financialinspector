@@ -10,12 +10,27 @@ import { FinancialListRecord } from '../Interfaces/IFinancialList';
 export class HeaderComponent implements OnInit {
   incomeList: FinancialListRecord[];
   expensesList: FinancialListRecord[];
+  private incomeSubscription;
+  private expensesSubscription;
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = JSON.parse(localStorage.getItem('incomeList')) || incomeList);
-    this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = JSON.parse(localStorage.getItem('expenseList')) || expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
   }
+
+  ngOnDestroy() {
+    this.incomeSubscription.unsubscribe();
+    this.expensesSubscription.unsubscribe();
+  }
+
+  // private getSum(list: FinancialListRecord[]): number{
+  //   let res: number = 0;
+  //   console.log("getSumList " + list);
+  //   res += list.reduce(function(total, el)
+  //   { return total + el.value}, 0);
+  //   return res;
+  // }
 
   getIncome(){
     let res: number = 0;

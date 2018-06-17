@@ -1,7 +1,7 @@
 <div class="header-container">
   <div class="contentHeading">
       <p class="name">Current Available Budget</p>
-      <p class="value">{{getIncome() - getExpenses()}}</p>    
+      <p class="value">{{totalIncome - totalExpenses}}</p>    
   </div>
 
   <div class="separateBlocks">
@@ -10,7 +10,7 @@
         INCOME
       </p>
       <p class="value">
-        + {{getIncome()}}
+        + {{totalIncome}}
       </p>
     </div>
     <div class="expenses">
@@ -18,7 +18,7 @@
             EXPENSES
           </p>
           <p class="value">
-            - {{getExpenses()}}
+            - {{totalExpenses}}
           </p>
         </div>
     </div>
