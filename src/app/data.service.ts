@@ -11,7 +11,6 @@ export class DataService {
   expenseObserve = this.expensesList.asObservable();
 
   constructor() { 
-    console.log("hey");
     if(JSON.parse(localStorage.getItem('expenseList')) != null){
       this.updateExpenses(JSON.parse(localStorage.getItem('expenseList')));
     }
@@ -30,6 +29,4 @@ export class DataService {
     this.expensesList.next(newExpensesList);
     localStorage.setItem('expenseList', JSON.stringify(newExpensesList));
   }
-
-  
 }

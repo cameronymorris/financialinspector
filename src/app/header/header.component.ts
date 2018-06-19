@@ -12,11 +12,20 @@ export class HeaderComponent implements OnInit {
   expensesList: FinancialListRecord[];
   private incomeSubscription;
   private expensesSubscription;
+  totalExpenses: number;
+  totalIncome: number;
+
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
-    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => {
+      this.incomeList = incomeList;
+      this.totalIncome = this.getSum(incomeList);
+    });
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => {
+      this.expensesList = expensesList;
+      this.totalExpenses = this.getSum(expensesList);
+    });
   }
 
   ngOnDestroy() {
@@ -24,24 +33,9 @@ export class HeaderComponent implements OnInit {
     this.expensesSubscription.unsubscribe();
   }
 
-  // private getSum(list: FinancialListRecord[]): number{
-  //   let res: number = 0;
-  //   console.log("getSumList " + list);
-  //   res += list.reduce(function(total, el)
-  //   { return total + el.value}, 0);
-  //   return res;
-  // }
-
-  getIncome(){
+  private getSum(list: FinancialListRecord[]): number{
     let res: number = 0;
-    res += this.incomeList.reduce(function(total, el)
-    { return total + el.value}, 0);
-    return res;
-  }
-
-  getExpenses(){
-    let res: number = 0;
-    res += this.expensesList.reduce(function(total, el)
+    res += list.reduce(function(total, el)
     { return total + el.value}, 0);
     return res;
   }
