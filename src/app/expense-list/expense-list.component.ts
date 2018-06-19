@@ -14,23 +14,23 @@ export class ExpenseListComponent implements OnInit {
   // incomeList: FinancialListRecord[];
   // expensesList: FinancialListRecord[];
   inspectionLists = {
-    income: new Array<FinancialListRecord>(),
-    expense: new Array<FinancialListRecord>()
+    income: this.financialData.incomeObserve,
+    expense: this.financialData.expenseObserve
   };
-  private incomeSubscription;
-  private expensesSubscription;
+  // private incomeSubscription;
+  // private expensesSubscription;
 
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.inspectionLists.income = incomeList);
-    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.inspectionLists.expense = expensesList);
+    // this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.inspectionLists.income = incomeList);
+    // this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.inspectionLists.expense = expensesList);
   }
 
-  ngOnDestroy() {
-    this.incomeSubscription.unsubscribe();
-    this.expensesSubscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.incomeSubscription.unsubscribe();
+  //   this.expensesSubscription.unsubscribe();
+  // }
 
   deleteItem(list, index, name){
     this.inspectionLists[name].splice(index, 1);

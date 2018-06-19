@@ -2,7 +2,7 @@
   <div class="content">
     <div class="income">
       <p class="name">INCOME</p>
-      <div class="income-list" *ngFor="let items of inspectionLists.income; let i = index">
+      <div class="income-list" *ngFor="let items of inspectionLists.income | async; let i = index">
         <div class="income-list-name">{{items.name}}</div>
         <p class="income-list-value">{{items.value}}</p>
         <div class="income-list-delete" (click)="deleteItem(incomeList, i, 'income')">x</div>
@@ -10,7 +10,7 @@
     </div>
     <div class="expenses">
       <p class="name">EXPENSES</p>
-      <div class="expenses-list" *ngFor="let items of inspectionLists.expense; let i = index">
+      <div class="expenses-list" *ngFor="let items of inspectionLists.expense | async; let i = index">
         <p class="expenses-list-name">{{items.name}}</p>
         <p class="expenses-list-value">{{items.value}}</p>    
         <div class="expenses-list-delete" (click)="deleteItem(expensesList, i, 'expense')">x</div>    
