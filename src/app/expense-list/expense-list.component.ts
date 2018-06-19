@@ -11,16 +11,20 @@ import { ChangeDetectionStrategy } from '@angular/core';
 })
 
 export class ExpenseListComponent implements OnInit {
-  incomeList: FinancialListRecord[];
-  expensesList: FinancialListRecord[];
+  // incomeList: FinancialListRecord[];
+  // expensesList: FinancialListRecord[];
+  inspectionLists = {
+    income: new Array<FinancialListRecord>(),
+    expense: new Array<FinancialListRecord>()
+  };
   private incomeSubscription;
   private expensesSubscription;
 
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
-    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.inspectionLists.income = incomeList);
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.inspectionLists.expense = expensesList);
   }
 
   ngOnDestroy() {
@@ -29,14 +33,8 @@ export class ExpenseListComponent implements OnInit {
   }
 
   deleteItem(list, index, name){
-    if(name == 'incomeList'){
-      this.incomeList.splice(index, 1);
-      this.financialData.updateIncome(this.incomeList);
-    } else if (name == 'expensesList'){
-      this.expensesList.splice(index, 1);
-      this.financialData.updateExpenses(this.expensesList);
-    } else{
-      return;
-    }
+    this.inspectionLists[name].splice(index, 1);
+    //list.splice(index, 1);
+    this.financialData.updateList(this.inspectionLists[name], name);
   }
 }

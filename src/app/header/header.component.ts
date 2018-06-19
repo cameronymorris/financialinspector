@@ -8,8 +8,12 @@ import { FinancialListRecord } from '../Interfaces/IFinancialList';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-  incomeList: FinancialListRecord[];
-  expensesList: FinancialListRecord[];
+  // incomeList: FinancialListRecord[];
+  // expensesList: FinancialListRecord[];
+  inspectionLists = {
+    income: new Array<FinancialListRecord>(),
+    expense: new Array<FinancialListRecord>()
+  };
   private incomeSubscription;
   private expensesSubscription;
   totalExpenses: number;
@@ -19,11 +23,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => {
-      this.incomeList = incomeList;
+      this.inspectionLists.income = incomeList;
       this.totalIncome = this.getSum(incomeList);
     });
     this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => {
-      this.expensesList = expensesList;
+      this.inspectionLists.expense = expensesList;
       this.totalExpenses = this.getSum(expensesList);
     });
   }

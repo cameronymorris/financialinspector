@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
 import { ValueTransformer } from '@angular/compiler/src/util';
 import { FinancialListRecord } from '../Interfaces/IFinancialList';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-expense',
@@ -12,15 +13,19 @@ export class AddExpenseComponent implements OnInit {
   currentSign: string = "income";
   description: string = "";
   value: number;
-  incomeList: FinancialListRecord[];
-  expensesList: FinancialListRecord[];
+  // incomeList: FinancialListRecord[];
+  // expensesList: FinancialListRecord[];
+  inspectionLists = {
+    income: new Array<FinancialListRecord>(),
+    expense: new Array<FinancialListRecord>()
+  };
   private incomeSubscription;
   private expensesSubscription;
   constructor(private financialData: DataService) { }
 
   ngOnInit() {
-    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.incomeList = incomeList);
-    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.expensesList = expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.inspectionLists.income = incomeList);
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.inspectionLists.expense = expensesList);
   }
 
   ngOnDestroy() {
@@ -28,27 +33,19 @@ export class AddExpenseComponent implements OnInit {
     this.expensesSubscription.unsubscribe();
   }
 
-  addItem(signValue: string){
+  addItem(signValue: string, form: NgForm){
+    console.log(form);
       let objToPush = {
         name: this.description,
         value: this.value
       }
       if(this.value != null && this.description != ""){
-      if(signValue == 'expense'){
-        this.expensesList.push(objToPush);
-        this.financialData.updateExpenses(this.expensesList);
-      } else if(signValue == 'income'){
-        this.incomeList.push(objToPush);
-        this.financialData.updateIncome(this.incomeList);
-      }
-      else{
         console.log(signValue);
-        alert("Check the sign value in console");
+        console.log(this.inspectionLists[signValue]);
+        this.inspectionLists[signValue].push(objToPush);
+        this.financialData.updateList(this.inspectionLists[signValue], signValue);
       }
       this.description = "";
       this.value = null;
-    }else{
-      return
-    }
   }
 }

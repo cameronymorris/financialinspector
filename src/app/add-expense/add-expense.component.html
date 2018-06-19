@@ -1,11 +1,14 @@
 <div class="add-expense-container">
   <div class="content">
-    <select name="income-expense" id="" class="income-expense" [(ngModel)]="currentSign">
-      <option selected value="income">+</option>
-      <option value="expense">-</option>
-    </select>
-    <input type="number" placeholder="Value..." id="value" [(ngModel)]="value" />
-    <input type="text" placeholder="Add description..." id="description" [(ngModel)]="description" />
-  <i class="far fa-check-circle" id="add-btn" (click)="addItem(currentSign)"></i>
+    <form #signupForm="ngForm" action="" class="financialForm" name="financialForm" (ngSubmit)="addItem(currentSign, signupForm)">
+      <select name="income-expense" id="" class="income-expense" [(ngModel)]="currentSign">
+        <option selected value="income">+</option>
+        <option value="expense">-</option>
+      </select>
+      <input name="valueInput" type="number" placeholder="Value..." id="value" [(ngModel)]="value" />
+      <input name="descriptionInput" type="text" placeholder="Add description..." id="description" [(ngModel)]="description" />
+      <button type="submit" class="invisibleSubmit"></button>
+      <i class="far fa-check-circle" id="add-btn" (click)="addItem(currentSign, signupForm)"></i>
+  </form>
 </div>
 </div>
