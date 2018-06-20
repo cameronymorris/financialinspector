@@ -8,14 +8,14 @@ import { FinancialListRecord } from '../Interfaces/IFinancialList';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-  // incomeList: FinancialListRecord[];
-  // expensesList: FinancialListRecord[];
+  language: string = "en";
   inspectionLists = {
     income: new Array<FinancialListRecord>(),
     expense: new Array<FinancialListRecord>()
   };
   private incomeSubscription;
   private expensesSubscription;
+  private languageSubscription;
   totalExpenses: number;
   totalIncome: number;
 
@@ -30,17 +30,23 @@ export class HeaderComponent implements OnInit {
       this.inspectionLists.expense = expensesList;
       this.totalExpenses = this.getSum(expensesList);
     });
+    this.languageSubscription = this.financialData.languageObserve.subscribe(language => {
+      this.language = language;
+    })
   }
 
   ngOnDestroy() {
     this.incomeSubscription.unsubscribe();
     this.expensesSubscription.unsubscribe();
+    this.languageSubscription.unsubscribe();
   }
 
   private getSum(list: FinancialListRecord[]): number{
-    let res: number = 0;
-    res += list.reduce(function(total, el)
-    { return total + el.value}, 0);
-    return res;
+    return list.reduce((total, el) => total + el.value, 0);
+  }
+
+  private languageChanged(){
+    console.log(this.language);
+    this.financialData.switchLanguage(this.language);
   }
 }

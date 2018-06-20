@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FinancialListRecord } from '../../Interfaces/IFinancialList';
+import { DataService} from '../../data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-financial-list',
@@ -7,13 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancialListComponent implements OnInit {
 
-  constructor() { }
+  @Input() financialList = new Array<FinancialListRecord>();
+  @Input() listType: string;
+  @Input() color: string;
+
+  constructor(private financialData: DataService) {
+    
+  }
 
   ngOnInit() {
   }
 
-  deleteItem(list, index, name){
-
+  deleteItem(index, name){
+    this.financialList.splice(index, 1);
+    this.financialData.updateList(this.financialList, name);
   }
-
 }

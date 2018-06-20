@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
 import { ValueTransformer } from '@angular/compiler/src/util';
 import { FinancialListRecord } from '../Interfaces/IFinancialList';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-expense',
@@ -11,41 +11,56 @@ import { NgForm } from '@angular/forms';
 })
 export class AddExpenseComponent implements OnInit {
   currentSign: string = "income";
-  description: string = "";
+  language: string;
+
+  itemAddForm: FormGroup;
+  post: any;
+  sign: string = '';
   value: number;
-  // incomeList: FinancialListRecord[];
-  // expensesList: FinancialListRecord[];
+  description: string = "";
+  currency: string = "";
+
   inspectionLists = {
     income: new Array<FinancialListRecord>(),
     expense: new Array<FinancialListRecord>()
   };
+
   private incomeSubscription;
   private expensesSubscription;
-  constructor(private financialData: DataService) { }
+  private languageSubscription;
+  constructor(private financialData: DataService, private fb: FormBuilder) {
+    this.itemAddForm = fb.group({
+      'sign': ["income", Validators.required],
+      'value': [null, Validators.required],
+      'description': [null, Validators.required],
+      'currency': ["USD", Validators.required]
+    })
+  }
 
   ngOnInit() {
     this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.inspectionLists.income = incomeList);
     this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.inspectionLists.expense = expensesList);
+    this.languageSubscription = this.financialData.languageObserve.subscribe(language => {
+      this.language = language;
+    })
   }
 
   ngOnDestroy() {
     this.incomeSubscription.unsubscribe();
     this.expensesSubscription.unsubscribe();
+    this.languageSubscription.unsubscribe();
   }
 
-  addItem(signValue: string, form: NgForm){
-    console.log(form);
-      let objToPush = {
-        name: this.description,
-        value: this.value
+  addItem(formValue){
+    console.log(formValue);
+      let objToPush = this.itemAddForm.value;
+      console.log(objToPush);
+      if(this.itemAddForm.valid){
+        console.log(formValue.sign);
+        console.log(this.inspectionLists[formValue.sign]);
+        this.inspectionLists[formValue.sign].push(objToPush);
+        this.financialData.updateList(this.inspectionLists[formValue.sign], formValue.sign);
       }
-      if(this.value != null && this.description != ""){
-        console.log(signValue);
-        console.log(this.inspectionLists[signValue]);
-        this.inspectionLists[signValue].push(objToPush);
-        this.financialData.updateList(this.inspectionLists[signValue], signValue);
-      }
-      this.description = "";
-      this.value = null;
+      this.itemAddForm.reset({sign: formValue.sign, currency: formValue.currency});
   }
 }

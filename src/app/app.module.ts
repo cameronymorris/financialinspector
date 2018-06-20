@@ -7,19 +7,38 @@ import { AppComponent } from './app.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { ExpenseListComponent } from './expense-list/expense-list.component';
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FinancialListComponent } from './expense-list/financial-list/financial-list.component';
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     AddExpenseComponent,
     ExpenseListComponent,
-    HeaderComponent
+    HeaderComponent,
+    FinancialListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

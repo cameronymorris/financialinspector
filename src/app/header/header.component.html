@@ -1,13 +1,17 @@
 <div class="header-container">
+  <select [(ngModel)]="language" name="languageSelector" id="languageSelector" (change)="languageChanged()">
+    <option value="en" selected="selected" >EN</option>
+    <option value="ua">UA</option>
+  </select>
   <div class="contentHeading">
-      <p class="name">Current Available Budget</p>
+      <p class="name">{{'Title' | translate}}</p>
       <p class="value">{{totalIncome - totalExpenses}}</p>    
   </div>
 
   <div class="separateBlocks">
     <div class="income">
       <p class="name">
-        INCOME
+          {{'Income' | translate}}
       </p>
       <p class="value">
         + {{totalIncome}}
@@ -15,7 +19,7 @@
     </div>
     <div class="expenses">
         <p class="name">
-            EXPENSES
+            {{'Expense' | translate}}
           </p>
           <p class="value">
             - {{totalExpenses}}

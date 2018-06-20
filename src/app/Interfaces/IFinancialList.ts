@@ -1,6 +1,8 @@
 export interface FinancialListRecord {
-    name: string;
+    sign: string;
+    description: string;
     value: number;
-  }
+    currency: string;
+}
   
 export type FinancialList = FinancialListRecord[];

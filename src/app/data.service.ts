@@ -1,32 +1,40 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FinancialListRecord } from './Interfaces/IFinancialList';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 
 export class DataService {
-  // private incomeList = new BehaviorSubject<FinancialListRecord[]>([]);
-  // private expensesList = new BehaviorSubject<FinancialListRecord[]>([]);
+  language = new BehaviorSubject<string>("en");
   inspectionLists = {
     income : new BehaviorSubject<FinancialListRecord[]>([]),
     expense : new BehaviorSubject<FinancialListRecord[]>([])
   };
   incomeObserve = this.inspectionLists.income.asObservable();
   expenseObserve = this.inspectionLists.expense.asObservable();
+  languageObserve = this.language.asObservable();
 
-  constructor() { 
+  constructor(private translate: TranslateService) { 
     if(JSON.parse(localStorage.getItem('expenseList')) != null){
       this.inspectionLists.expense.next(JSON.parse(localStorage.getItem('expenseList')));
-      //this.updateList(JSON.parse(localStorage.getItem('expenseList')), "expense");
     }
     if(JSON.parse(localStorage.getItem('incomeList')) != null){
       this.inspectionLists.income.next(JSON.parse(localStorage.getItem('incomeList')));
-      //this.updateList(JSON.parse(localStorage.getItem('incomeList')));
+    }
+    if((localStorage.getItem('language')) != null){
+      this.language.next(localStorage.getItem('language'));
     }
   }
 
   updateList(newList: FinancialListRecord[], listType: string){
     this.inspectionLists[listType].next(newList);
-    localStorage.setItem(this.inspectionLists[listType] + 'List', JSON.stringify(newList));
+    localStorage.setItem(listType + 'List', JSON.stringify(newList));
+  }
+
+  switchLanguage(language: string) {
+    this.language.next(language);
+    localStorage.setItem('language', language);
+    this.translate.use(language);
   }
 }

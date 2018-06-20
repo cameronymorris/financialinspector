@@ -1,5 +1,6 @@
-<div class="expenses-list" *ngFor="let items of inspectionLists.expense; let i = index">
-    <p class="expenses-list-name">{{items.name}}</p>
-    <p class="expenses-list-value">{{items.value}}</p>    
-    <div class="expenses-list-delete" (click)="deleteItem(expensesList, i, 'expense')">x</div>    
+<div class="list" *ngFor="let items of financialList; let i = index">
+        <!-- *ngFor="let items of financialList; let i = index" -->
+    <p class="list-name">{{items.description}}</p>
+    <p class="list-value" [ngStyle] = "{'color': color}">{{items.value | currency: items.currency}}</p>
+    <div class="list-delete" (click)="deleteItem(i, listType)">x</div>    
 </div>

@@ -25,12 +25,16 @@
                 }
             }
 
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+
             #value{
                 width: 30%;
             }
 
             #description{
-                width: 50%;
+                width: 40%;
             }
 
             .invisibleSubmit{
@@ -59,21 +63,32 @@
                     transition: border 0.3s;
                 }
             }
+
+            #currency{
+                .income-expense;
+                width: 10%;
+                font-size: 16px;
+            }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 865px) {
     .financialForm{
         display: block !important;
         
         .income-expense{
             width: 15% !important;
-            margin-right: 15px;
+            margin-right: 5%;
+        }
+
+        #currency{
+            width: 25% !important;
+            margin-right: 5%;
         }
         
         #value{
-            width: 60% !important;
+            width: 40% !important;
         }
 
         #description{
