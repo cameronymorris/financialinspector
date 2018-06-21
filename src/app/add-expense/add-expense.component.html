@@ -2,10 +2,7 @@
   <div class="content">
     <form [formGroup]="itemAddForm" action="" class="financialForm" name="financialForm" (ngSubmit)="addItem(itemAddForm.value)">
       <select formControlName="currency" name="currency" id="currency">
-        <option value="USD" selected>USD</option>
-        <option value="UAH">UAH</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
+        <option *ngFor="let currency of financialData.currencyArray" [value]="currency">{{currency}}</option>
       </select>
       <select formControlName="sign" name="income-expense" id="" class="income-expense">
         <option selected value="income">+</option>

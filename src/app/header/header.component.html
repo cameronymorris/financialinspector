@@ -5,7 +5,9 @@
   </select>
   <div class="contentHeading">
       <p class="name">{{'Title' | translate}}</p>
-      <p class="value">{{totalIncome - totalExpenses}}</p>    
+      <div class="value__container">
+        <p class="value" *ngFor="let item of moneyLeft">{{item.value | currency : item.currency}}</p>    
+      </div>
   </div>
 
   <div class="separateBlocks">
@@ -13,17 +15,21 @@
       <p class="name">
           {{'Income' | translate}}
       </p>
-      <p class="value">
-        + {{totalIncome}}
-      </p>
+      <div class="value__container">
+        <p class="value" *ngFor="let item of totalIncome">
+          {{item.value | currency : item.currency}} 
+       </p>
+      </div>
     </div>
     <div class="expenses">
         <p class="name">
             {{'Expense' | translate}}
           </p>
-          <p class="value">
-            - {{totalExpenses}}
-          </p>
+          <div class="value__container">
+            <p class="value" *ngFor="let item of totalExpenses">
+              {{item.value | currency : item.currency}} 
+            </p>
+          </div>
         </div>
     </div>
   </div>
