@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 })
 
 export class ExpenseListComponent implements OnInit {
+  searchField: string = "";
   language: string;
   income: string = "income";
   expense: string = 'expense';
@@ -22,17 +23,38 @@ export class ExpenseListComponent implements OnInit {
     income: new Array<FinancialListRecord>(),
     expense: new Array<FinancialListRecord>()
   };
+
+  inspectionListsToPass = {
+    income: new Array<FinancialListRecord>(),
+    expense: new Array<FinancialListRecord>()
+  }
+
   private incomeSubscription;
   private expensesSubscription;
   private languageSubscription;
+  private searchfieldSubscription;
 
   constructor(private financialData: DataService) {}
 
   ngOnInit() {
-    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => this.inspectionLists.income = incomeList);
-    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => this.inspectionLists.expense = expensesList);
+    this.incomeSubscription = this.financialData.incomeObserve.subscribe(incomeList => {
+      this.inspectionLists.income = incomeList;
+      this.inspectionListsToPass.income = this.getFilteredList(this.inspectionLists.income, this.searchField);
+
+      //this.getFilteredList(this.inspectionLists.income, this.searchField);
+    });
+    this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => {
+      this.inspectionLists.expense = expensesList;
+      this.inspectionListsToPass.expense = this.getFilteredList(this.inspectionLists.expense, this.searchField);
+      //this.getFilteredList(this.inspectionLists.expense, this.searchField);
+    });
     this.languageSubscription = this.financialData.languageObserve.subscribe(language => {
       this.language = language;
+    });
+    this.searchfieldSubscription = this.financialData.searchFieldObserve.subscribe(searchField => {
+      this.searchField = searchField;
+      this.inspectionListsToPass.income = this.getFilteredList(this.inspectionLists.income, this.searchField);
+      this.inspectionListsToPass.expense = this.getFilteredList(this.inspectionLists.expense, this.searchField);
     })
   }
 
@@ -42,9 +64,15 @@ export class ExpenseListComponent implements OnInit {
     this.languageSubscription.unsubscribe();
   }
 
-  deleteItem(list, index, name){
-    console.log(this.inspectionLists[name]);
-    this.inspectionLists[name].splice(index, 1);
-    this.financialData.updateList(this.inspectionLists[name], name);
+  getFilteredList(list: FinancialListRecord[], searchField: string){
+    if(searchField === undefined){
+      return list;
+   } else{
+     return list.filter( el => el.description.toLowerCase().includes(searchField.toLowerCase()));
+   }
+  }
+
+  searchChange(e){
+    this.financialData.updateSearchString(e.target.value);
   }
 }

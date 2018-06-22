@@ -13,6 +13,7 @@ import { FinancialListComponent } from './expense-list/financial-list/financial-
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +25,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddExpenseComponent,
     ExpenseListComponent,
     HeaderComponent,
-    FinancialListComponent
+    FinancialListComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

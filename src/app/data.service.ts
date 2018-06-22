@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class DataService {
   language = new BehaviorSubject<string>("en");
+  searchfield = new BehaviorSubject<string>("");
   currencyArray: Array<string> = ['USD', 'UAH', 'EUR', 'GBP'];
   inspectionLists = {
     income : new BehaviorSubject<FinancialListRecord[]>([]),
@@ -15,6 +16,7 @@ export class DataService {
   incomeObserve = this.inspectionLists.income.asObservable();
   expenseObserve = this.inspectionLists.expense.asObservable();
   languageObserve = this.language.asObservable();
+  searchFieldObserve = this.searchfield.asObservable();
 
   constructor(private translate: TranslateService) { 
     if(JSON.parse(localStorage.getItem('expenseList')) != null){
@@ -37,5 +39,9 @@ export class DataService {
     this.language.next(language);
     localStorage.setItem('language', language);
     this.translate.use(language);
+  }
+
+  updateSearchString(searchfield){
+    this.searchfield.next(searchfield);
   }
 }

@@ -1,19 +1,27 @@
 <div class="expense-list-container">
   <div class="content">
+    <form id="seachForm">
+        <label id="searchLabel"> Filter lists: </label>
+        <input name="serachField" id="search" type="text" [(ngModel)] = "searchField" (keyup) = "searchChange($event)">
+    </form>
     <div class="income">
       <p class="name">{{'Income' | translate}}</p>
         <app-financial-list 
           [financialList] = "inspectionLists.income"
+          [financialListToPass] = 'inspectionListsToPass.income'
           [listType] = "income"
-          [color] = "colors.income">
+          [color] = "colors.income"
+          [searchField] = "searchField">
         </app-financial-list>
     </div>
     <div class="expenses">
       <p class="name">{{'Expense' | translate}}</p>
         <app-financial-list 
         [financialList] = "inspectionLists.expense" 
+        [financialListToPass] = 'inspectionListsToPass.expense'
         [listType] = "expense"
-        [color] = "colors.expense">
+        [color] = "colors.expense"
+        [searchField] = "searchField">
     </app-financial-list>
     </div>  
   </div>

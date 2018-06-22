@@ -32,8 +32,6 @@ export class HeaderComponent implements OnInit {
     this.expensesSubscription = this.financialData.expenseObserve.subscribe(expensesList => {
       this.inspectionLists.expense = expensesList;
       this.totalExpenses = this.getSum(expensesList);
-      console.log("Expenses");
-      console.log(this.totalExpenses);
       this.moneyLeft = this.getMoneyLeft(this.totalExpenses.concat(this.totalIncome));
     });
     this.languageSubscription = this.financialData.languageObserve.subscribe(language => {
@@ -56,8 +54,6 @@ export class HeaderComponent implements OnInit {
             (el.sign == 'income') ? total + el.value : total - el.value : total, 0),
         'currency' : this.financialData.currencyArray[i],
       });
-      console.log(i)
-      console.log(currencyList);
     }
     return currencyList.filter(el => el.value != 0 );
   }
@@ -76,7 +72,6 @@ export class HeaderComponent implements OnInit {
   
 
   private languageChanged(){
-    console.log(this.language);
     this.financialData.switchLanguage(this.language);
   }
 }

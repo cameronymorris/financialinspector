@@ -52,12 +52,8 @@ export class AddExpenseComponent implements OnInit {
   }
 
   addItem(formValue){
-    console.log(formValue);
       let objToPush = this.itemAddForm.value;
-      console.log(objToPush);
       if(this.itemAddForm.valid){
-        console.log(formValue.sign);
-        console.log(this.inspectionLists[formValue.sign]);
         this.inspectionLists[formValue.sign].push(objToPush);
         this.financialData.updateList(this.inspectionLists[formValue.sign], formValue.sign);
       }

@@ -12,6 +12,31 @@
         flex-flow: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
+
+        #seachForm{
+            width: 100%;
+            #search{
+                width: 80%;
+                font-size: 16px;
+                height: 35px;
+                margin: 20px 0;
+                border-radius: 5px;
+                border: 1px solid #c6baba;
+                text-indent: 10px;
+    
+                &:focus{
+                    outline: none;
+                    border: 1px solid black;
+                    transition: border 0.3s;
+                }
+            }
+
+            #searchLabel{
+                margin-right: 15px;
+                vertical-align: middle;
+            }
+        }
+
         .income{
             color: #80ba2a;
             width: 45%;
