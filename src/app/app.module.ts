@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { DataService} from './data.service';
+import { CurrencyService } from './currency.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
@@ -14,6 +15,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FilterPipe } from './Pipes/filter.pipe';
+import { CurrencyChartComponent } from './currency-chart/currency-chart.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExpenseListComponent,
     HeaderComponent,
     FinancialListComponent,
-    FilterPipe
+    FilterPipe,
+    CurrencyChartComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [DataService],
+  providers: [DataService, CurrencyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

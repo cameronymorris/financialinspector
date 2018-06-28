@@ -29,7 +29,6 @@ export class FinancialListComponent implements OnInit {
         return (el.description === description && el.value === value)
       })
     )
-    console.log(index);
     this.financialList.splice(index, 1);
     this.financialData.updateList(this.financialList, name);
   }
