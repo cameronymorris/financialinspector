@@ -28,17 +28,23 @@ export class CurrencyChartComponent implements OnInit {
     this.currencyService.getUsdToGbpRates()
       .subscribe(res => {
         this.gbpRates = res.dataset_data.data;
-        this.dates = this.gbpRates.map(el => el[0]);
-        this.gbpRatesValues = this.gbpRates.map(el => el[1]);
+        this.gbpRates.forEach(el => {
+          this.gbpRatesValues.push(el[1]);
+          this.dates.push(el[0]);
+        });
         console.log(this.gbpRatesValues)
+        console.log(this.dates);
       });
     
     this.currencyService.getUsdToEurUrlRates()
       .subscribe(res => {
         this.eurRates = res.dataset_data.data;
-        this.eurRatesValues = this.eurRates.map(el => el[1]);
-        console.log(this.eurRatesValues);
-      })
+        this.eurRates.forEach(el => {
+          this.eurRatesValues.push(el[1]);
+        });
+      });
+      console.log("help");
+      console.log(this.gbpRatesValues);
 
       this.chart = new Chart('canvas', {
         type: 'line',
@@ -47,8 +53,8 @@ export class CurrencyChartComponent implements OnInit {
 				datasets: [{
 					label: 'USD To EUR',
 					borderColor: '#3cba9f',
-					data: this.popa,
-					fill: true,
+					data: this.eurRatesValues,
+					fill: false,
 				}, {
 					label: 'USD To GBP',
 					fill: false,
