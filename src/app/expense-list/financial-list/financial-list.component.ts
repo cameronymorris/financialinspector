@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FinancialListRecord } from '../../Interfaces/IFinancialList';
 import { DataService} from '../../data.service';
 import { Observable } from 'rxjs';
-import { FilterPipe } from '../../Pipes/filter.pipe';
 
 @Component({
   selector: 'app-financial-list',
