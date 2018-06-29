@@ -14,7 +14,6 @@ import { FinancialListComponent } from './expense-list/financial-list/financial-
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FilterPipe } from './Pipes/filter.pipe';
 import { CurrencyChartComponent } from './currency-chart/currency-chart.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -28,7 +27,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExpenseListComponent,
     HeaderComponent,
     FinancialListComponent,
-    FilterPipe,
     CurrencyChartComponent
   ],
   imports: [

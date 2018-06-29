@@ -1,8 +1,14 @@
 <div class="header-container">
-  <select [(ngModel)]="language" name="languageSelector" id="languageSelector" (change)="languageChanged()">
-    <option value="en" selected="selected" >EN</option>
-    <option value="ua">UA</option>
-  </select>
+  <div class="header-wrapper">
+    <select [(ngModel)]="language" name="languageSelector" id="languageSelector" (change)="languageChanged()">
+      <option value="en" selected="selected" >EN</option>
+      <option value="ua">UA</option>
+    </select>
+    <ul class="header-container__routes">
+      <li class="header-container__routes--item"><a [routerLink]="['']">Home</a></li>
+      <li class="header-container__routes--item"><a [routerLink]="['/currency_rates']">Currency Rates</a></li>
+    </ul>
+  </div>
   <div class="contentHeading">
       <p class="name">{{'Title' | translate}}</p>
       <div class="value__container">

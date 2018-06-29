@@ -16,8 +16,6 @@ export class CurrencyChartComponent implements OnInit {
   gbpRatesValues = [];
   eurRatesValues = [];
   test = [1.4,2, 2, 3];
-  //canvas = <HTMLCanvasElement> document.getElementById('canvas');
-  //ctx = this.canvas.getContext('2d');
   chart: Chart;
 
   constructor(private currencyService: CurrencyService) { }
@@ -41,9 +39,9 @@ export class CurrencyChartComponent implements OnInit {
         this.eurRates = res.dataset_data.data;
         this.eurRates.forEach(el => {
           this.eurRatesValues.push(el[1]);
-        });
-      });
-      console.log("help");
+				});
+				
+				console.log("help");
       console.log(this.gbpRatesValues);
 
       this.chart = new Chart('canvas', {
@@ -93,6 +91,9 @@ export class CurrencyChartComponent implements OnInit {
 					}]
 				}
 			}
-    })
+    });
+
+      });
+      
   }
 }

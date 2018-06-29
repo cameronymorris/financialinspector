@@ -7,10 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-  <ul>
-    <li><a [routerLink]="['']">Home</a></li>
-    <li><a [routerLink]="['/currency_rates']">Currency Rates</a></li>
-  </ul>
   <app-header></app-header>
   <app-add-expense *ngIf="this.router.url === '/'"></app-add-expense>
 
