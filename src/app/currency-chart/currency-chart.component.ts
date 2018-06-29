@@ -43,18 +43,21 @@ export class CurrencyChartComponent implements OnInit {
 					labels: this.dates,
 					datasets: [{
 						label: 'EUR TO USD',
+						backgroundColor: '#3cba9f',
 						borderColor: '#3cba9f',
 						data: this.eurRatesValues,
 						fill: false,
 					}, {
 						label: 'GBP TO USD',
 						fill: false,
+						backgroundColor: '#ffcc00',
 						borderColor: '#ffcc00',
 						data: this.gbpRatesValues,
 					}]
 				},
 				options: {
 					responsive: true,
+					maintainAspectRatio: false,
 					title: {
 						display: true,
 						text: 'Currency exchage chart'
