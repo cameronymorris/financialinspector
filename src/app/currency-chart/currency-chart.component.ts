@@ -64,7 +64,7 @@ export class CurrencyChartComponent implements OnInit {
 				responsive: true,
 				title: {
 					display: true,
-					text: 'Chart.js Line Chart'
+					text: 'Currency exchage chart'
 				},
 				tooltips: {
 					mode: 'index',
