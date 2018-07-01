@@ -1,4 +1,22 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 * {
     margin: 0;
     padding: 0;
+}
+
+.mat-select-value, .mat-select-arrow{
+    color: #fff !important;
+}
+
+.mat-form-field-infix{
+    border-bottom: 2px solid lightgrey !important;
+
+    &:focus{
+        outline: none;
+    }
+
+    &:hover{
+        border-bottom: 2px solid grey;
+    }
 }

@@ -1,4 +1,9 @@
+.mat-select-value{
+    color: #fff !important;
+}
+
 .header-container{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: 100%;
     height: auto;
     min-height: 350px;
@@ -7,7 +12,6 @@
 
     p{
         color: #fff;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         text-align: center;
     }
 
@@ -15,17 +19,26 @@
         display: flex;
         flex-flow: row;
         justify-content: space-between;
-
-        #languageSelector{
-            margin: auto 15px;
-            border: 1px solid #ccc;
-            width: 50px;
-            border-radius: 3px;
-            overflow: hidden;
-            height: 25px;
+        #languageDropDown{
+            margin-left: 25px;
+            color: #fff !important;
+            #languageSelector{
+                // border: 1px solid #ccc;
+                // border-radius: 3px;
+                width: 50px;
+                color: #fff !important;
+        
+                &:focus{
+                    outline: none;
+                }
     
-            &:focus{
-                outline: none;
+                .languageSelector__item{
+                    color: #fff !important;
+                }
+            }
+
+            &:span{
+                color: #fff !important;
             }
         }
 
@@ -36,7 +49,7 @@
                 display: inline-block;
                 width: auto;
                 padding: 5px 10px;
-                margin: 15px;
+                margin: 17px;
                 border-bottom: 1px solid lightgrey;
                 
                 &:hover{
