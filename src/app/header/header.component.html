@@ -2,7 +2,7 @@
   <div class="header-wrapper">
     <div id="languageDropDown">
     <mat-form-field id="languageSelector">
-      <mat-select [(ngModel)]="language" name="languageSelector" id="languageSelector" (change)="languageChanged()">
+      <mat-select [(ngModel)]="language" name="languageSelector" id="languageSelector" (selectionChange)="languageChanged()">
         <mat-option panelClass="languageSelector__item" value="en" selected="selected" >EN</mat-option>
         <mat-option panelClass="languageSelector__item" value="ua">UA</mat-option>
       </mat-select>

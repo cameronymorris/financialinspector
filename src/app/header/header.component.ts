@@ -72,6 +72,8 @@ export class HeaderComponent implements OnInit {
   
 
   private languageChanged(){
+    console.log('lang changed');
+    console.log(this.language);
     this.financialData.switchLanguage(this.language);
   }
 }
