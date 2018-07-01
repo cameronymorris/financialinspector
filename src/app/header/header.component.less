@@ -23,13 +23,16 @@
             margin-left: 25px;
             color: #fff !important;
             #languageSelector{
-                // border: 1px solid #ccc;
-                // border-radius: 3px;
                 width: 50px;
                 color: #fff !important;
         
                 &:focus{
-                    outline: none;
+                    outline: none !important;
+                    border-bottom: none;
+                }
+
+                &:active{
+                    outline: none !important;
                 }
     
                 .languageSelector__item{
