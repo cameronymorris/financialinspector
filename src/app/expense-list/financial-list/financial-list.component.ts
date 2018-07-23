@@ -37,7 +37,7 @@ export class FinancialListComponent implements OnInit {
   deleteItem(name, description, value, currency){
     const dialogRef = this.dialog.open(DeleteModalComponent, {
       width: '80%',
-      height: '400px',
+      height: 'auto',
       data: {
         description: description,
         value: value,
@@ -60,7 +60,7 @@ export class FinancialListComponent implements OnInit {
   editItem(description, value, currency, listType){
     const dialogRef = this.dialog.open(EditingComponent, {
       width: '80%',
-      height: '400px',
+      height: 'auto',
       data: {
         description: description,
         value: value,

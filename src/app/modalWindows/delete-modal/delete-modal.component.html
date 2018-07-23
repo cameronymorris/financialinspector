@@ -16,10 +16,11 @@
         <mat-label>{{'Currency' | translate}}</mat-label>
         <input matInput formControlName="currency" readonly="readonly"/>     
     </mat-form-field>
- 
+
+    <mat-dialog-actions class="modalButtons">
+        <button mat-raised-button class="delete" (click)="delete()">{{'Delete' | translate}}</button>
+        <button mat-raised-button class="cancel" (click)="cancel()">{{'Cancel' | translate}}</button>
+    </mat-dialog-actions>
+    
 </mat-dialog-content>
 
-<mat-dialog-actions class="modalButtons">
-    <button mat-raised-button class="delete" (click)="delete()">{{'Delete' | translate}}</button>
-    <button mat-raised-button class="cancel" (click)="cancel()">{{'Cancel' | translate}}</button>
-</mat-dialog-actions>
