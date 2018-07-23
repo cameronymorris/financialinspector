@@ -1,18 +1,19 @@
-<h2 mat-dialog-title>Edit the note</h2>
+<h2 mat-dialog-title>{{'EditModalTitle' | translate}}</h2>
 
 <mat-dialog-content class="modalContent" [formGroup]="form">
   
     <mat-form-field class="form-field description">
-        <mat-label>Description</mat-label>
+        <mat-label>{{'Description' | translate}}</mat-label>
         <textarea matInput formControlName="description" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
     </mat-form-field>
 
     <mat-form-field class="form-field value">
-        <mat-label>Value</mat-label>
+        <mat-label>{{'Value' | translate}}</mat-label>
         <input matInput formControlName="value"/>
     </mat-form-field>
 
     <mat-form-field class="form-field currency">
+        <mat-label>{{'Currency' | translate}}</mat-label>
         <mat-select matInput formControlName="currency">
             <mat-option *ngFor="let currency of currencyArray" [value]="currency">
                 {{currency}}
@@ -23,6 +24,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="modalButtons">
-    <button mat-raised-button class="close" (click)="close()">Close</button>
-    <button mat-raised-button class="save" (click)="save()">Save</button>
+    <button mat-raised-button class="close" (click)="close()">{{'Close' | translate}}</button>
+    <button mat-raised-button class="save" (click)="save()">{{'Save' | translate}}</button>
 </mat-dialog-actions>
