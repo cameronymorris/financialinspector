@@ -33,7 +33,7 @@ export class AddExpenseComponent implements OnInit {
       'sign': ["income", Validators.required],
       'value': [null, Validators.required],
       'description': [null, Validators.required],
-      'currency': ["USD", Validators.required]
+      'currency': ["UAH", Validators.required]
     })
   }
 

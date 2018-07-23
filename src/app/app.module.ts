@@ -16,9 +16,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CurrencyChartComponent } from './currency-chart/currency-chart.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { EditingComponent } from './modalWindows/editing/editing.component';
+import { DeleteModalComponent } from './modalWindows/delete-modal/delete-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,7 +36,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExpenseListComponent,
     HeaderComponent,
     FinancialListComponent,
-    CurrencyChartComponent
+    CurrencyChartComponent,
+    EditingComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +55,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [DataService, CurrencyService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditingComponent, DeleteModalComponent]
 })
 export class AppModule { }

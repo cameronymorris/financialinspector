@@ -2,5 +2,9 @@
         <!-- *ngFor="let items of financialList; let i = index" -->
     <p class="list-name">{{items.description}}</p>
     <p class="list-value" [ngStyle] = "{'color': color}">{{items.value | currency: items.currency}}</p>
-    <div class="list-delete" (click)="deleteItem(listType, items.description, items.value)">x</div>    
+    <div class="cusomization-container">
+        <div><i class="far fa-trash-alt item-delete" (click)="deleteItem(listType, items.description, items.value, items.currency)"></i></div>
+        <div><i class="fas fa-edit item-edit" (click)="editItem(items.description, items.value, items.currency, listType)"></i></div>
+        <!-- <div class="list-delete" (click)="deleteItem(listType, items.description, items.value)">x</div>     -->
+    </div>
 </div>

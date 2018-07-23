@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Are you sure you want to delete the note?</h2>
+
+<mat-dialog-content class="modalContent" [formGroup]="form">
+  
+    <mat-form-field class="form-field description">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" readonly="readonly" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form-field value">
+        <mat-label>Value</mat-label>
+        <input matInput formControlName="value" readonly="readonly"/>
+    </mat-form-field>
+
+    <mat-form-field class="form-field currency">
+        <mat-label>Currency</mat-label>
+        <input matInput formControlName="currency" readonly="readonly"/>     
+    </mat-form-field>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions class="modalButtons">
+    <button mat-raised-button class="delete" (click)="delete()">Delete</button>
+    <button mat-raised-button class="cancel" (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

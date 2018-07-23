@@ -25,19 +25,46 @@
             #languageSelector{
                 width: 50px;
                 color: #fff !important;
-        
-                &:focus{
-                    outline: none !important;
-                    border-bottom: none;
-                }
 
-                &:active{
-                    outline: none !important;
-                }
-    
-                .languageSelector__item{
+                .mat-select-value, .mat-select-arrow{
                     color: #fff !important;
                 }
+                
+                .mat-form-field-infix{
+                    border-bottom: 2px solid lightgrey !important;
+                }
+                
+                .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+                     background: none !important; 
+                }
+
+                mat-select:focus .mat-form-field-underline {
+                    background-color: #63961C;
+                }
+        
+                // ::ng-deep .mat-select-value, ::ng-deep .mat-select-arrow{
+                //     color: #fff !important;
+                // }
+
+                // ::ng-deep .mat-form-field-underline
+                // {
+                //     background-color: #fff !important;
+                //     outline-color: #fff !important;
+                // }
+
+                // ::ng-deep .mat-form-field-infix{
+                //      border-bottom: 2px solid lightgrey !important;
+                // }
+
+                // ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+                //     background: none important!;
+                // }
+
+                
+                // ::ng-deep .mat-form-field:focus .mat-form-field-flex {
+                //     background-color: yellow;
+                //     outline: none;
+                // }
             }
 
             &:span{
@@ -88,7 +115,7 @@
 
 .separateBlocks{
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     max-width: 700px;
     min-width: 150px;
     .income{

@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class DataService {
   language = new BehaviorSubject<string>("en");
   searchfield = new BehaviorSubject<string>("");
-  currencyArray: Array<string> = ['USD', 'UAH', 'EUR', 'GBP'];
+  currencyArray: Array<string> = ['UAH', 'USD', 'EUR', 'GBP'];
   inspectionLists = {
     income : new BehaviorSubject<FinancialListRecord[]>([]),
     expense : new BehaviorSubject<FinancialListRecord[]>([])

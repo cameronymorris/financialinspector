@@ -1,0 +1,34 @@
+.modalContent{
+    display: inline;
+    margin: 20px;
+}
+
+.form-field{
+    display: block;
+    margin: 0 auto;
+}
+
+.modalButtons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .delete{
+        background: red;
+    }
+}
+
+@media only screen and (max-width: 355px) {
+    .modalButtons{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        .delete{
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .cancel{
+            margin: 0;
+        }
+    }
+}
