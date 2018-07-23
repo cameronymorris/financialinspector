@@ -3,5 +3,16 @@
     "Income": "ДОХОДИ",
     "Expense": "ВИТРАТИ",
     "ValuePlaceholder": "Кількість...",
-    "DescriptionPlaceholder": "Додайте опис..."
+    "DescriptionPlaceholder": "Додайте опис...",
+    "Home": "Домашня",
+    "CurrencyRates": "Курс валют",
+    "DeleteModalTitle" : "Ви впевнені, що хочете видалити запис?",
+    "Description" : "Опис",
+    "Value" : "Кількість",
+    "Currency" : "Валюта",
+    "Delete" : "Видалити",
+    "Cancel" : "Відхилити",
+    "EditModalTitle" : "Відредагуйте запис",
+    "Close" : "Закрити",
+    "Save" : "Зберегти"
 }

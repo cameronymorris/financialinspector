@@ -3,5 +3,16 @@
     "Income": "INCOME",
     "Expense": "EXPENSE",
     "ValuePlaceholder": "Value...",
-    "DescriptionPlaceholder": "Add description..."
+    "DescriptionPlaceholder": "Add description...",
+    "Home": "Home",
+    "CurrencyRates": "Currency Rates",
+    "DeleteModalTitle" : "Are you sure you want to delete the note?",
+    "Description" : "Description",
+    "Value" : "Value",
+    "Currency" : "Currency",
+    "Delete" : "Delete",
+    "Cancel" : "Cancel",
+    "EditModalTitle" : "Edit the note",
+    "Close" : "Close",
+    "Save" : "Save"
 }
