@@ -75,7 +75,7 @@ export class FinancialListComponent implements OnInit {
           let index = this.findItemIndex(description, value);
           this.financialList[index].description = data.description;
           this.financialList[index].currency = data.currency;
-          this.financialList[index].value = data.value;
+          this.financialList[index].value = parseInt(data.value);
           this.financialData.updateList(this.financialList, listType);
         }
       }
